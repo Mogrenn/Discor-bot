@@ -1,9 +1,20 @@
 const Discord = require("./node_modules/discord.js");
 const client = new Discord.Client();
-let bot_token = "NjM2MTQ4ODIzMzg2ODgyMDQ5.Xa7Z5w.Wk2gXg544hWDEv7iWP1-h155ZGc";
+let bot_token = "NjM2MTQ4ODIzMzg2ODgyMDQ5.Xa9Kpg.M6ui0H7EzEVgQ29MKaBo-5iJFTg";
+let mainChannel;
 
 client.on("ready", () => {
   console.log("Connected as " + client.user.tag);
+  console.log("Server : ");
+  mainChannel = client.channels.get("636292442781515792");
+
+  client.guilds.forEach((guild) => {
+    console.log(`-- ${guild.name} - ${guild.id}`);
+    console.log("Channels : ");
+    guild.channels.forEach((channel) => {
+      console.log(`-- ${channel.name} (${channel.type} - ${channel.id})`);
+    });
+  });
 });
 
 client.on('message', (msg) => {
@@ -46,39 +57,36 @@ function helpCommand(arguments, msg) {
   }
 }
 
-function op(arguments, msg) {
+function op(arguments) {
   let uname = "";
-  for(let i = 1; i < arguments.length; i++){
-    if(i === 1 ){
-        uname += arguments[i];
-    }else{
-    uname += "+"+arguments[i];
+  for (let i = 1; i < arguments.length; i++) {
+    if (i === 1) {
+      uname += arguments[i];
+    } else {
+      uname += "+" + arguments[i];
     }
-
   }
 
   if (arguments.length < 0) {
-    msg.channel.send("För lite argument(exmpel: !op )");
+    mainChannel.send("För lite argument(exmpel: !op )");
   } else {
 
     switch (arguments[0]) {
       case "euw":
-
-        msg.channel.send("https://euw.op.gg/summoner/userName=" + uname);
+        mainChannel.send("https://euw.op.gg/summoner/userName=" + uname);
         break;
       case "na":
-        msg.channel.send("https://na.op.gg/summoner/userName=" + uname);
+        mainChannel.send("https://na.op.gg/summoner/userName=" + uname);
         break;
       case "eune":
-        msg.channel.send("https://eune.op.gg/summoner/userName=" + uname);
+        mainChannel.send("https://eune.op.gg/summoner/userName=" + uname);
         break;
       default:
-        msg.channel.send("You stupid or what support för wildcard regions endast");
+        mainChannel.send("You stupid or what support för wildcard regions endast");
     }
 
   }
 
 }
-
 
 client.login(bot_token);
