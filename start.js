@@ -1,7 +1,9 @@
 const Discord = require("./node_modules/discord.js");
 const client = new Discord.Client();
-let bot_token = "NjM2MTQ4ODIzMzg2ODgyMDQ5.XbB2yg.PPeiWS4MI_V24EMCMR-rI71Bl-E";
 let mainChannel;
+
+let bot_token = "NjM2MTQ4ODIzMzg2ODgyMDQ5.XbCSXQ.9xwbDle3EoH9FQGnlA2cl-mANHo";
+
 
 client.on("ready", () => {
   console.log("Connected as " + client.user.tag);
@@ -21,6 +23,10 @@ client.on('message', (msg) => {
   if (msg.author == client.user) { // Prevent bot from responding to its own messages
     return
   }
+
+  client.on("error", (error) => {
+      console.log(error);
+  });
 
   if (msg.content.startsWith("!")) {
     processCommand(msg);
@@ -73,7 +79,8 @@ function op(arguments) {
 
     switch (arguments[0]) {
       case "euw":
-        mainChannel.send("https://euw.op.gg/summoner/userName=" + uname);
+<<<<<<< HEAD
+        msg.channel.send("https://euw.op.gg/summoner/userName=" + uname);
         break;
       case "na":
         mainChannel.send("https://na.op.gg/summoner/userName=" + uname);
@@ -84,9 +91,12 @@ function op(arguments) {
       default:
         mainChannel.send("You stupid or what support för wildcard regions endast");
     }
-
   }
-
 }
+
+
+
+
+
 
 client.login(bot_token);
