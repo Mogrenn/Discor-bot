@@ -4,6 +4,16 @@ let bot_token = "NjM2MTQ4ODIzMzg2ODgyMDQ5.XbCSXQ.9xwbDle3EoH9FQGnlA2cl-mANHo";
 
 client.on("ready", () => {
   console.log("Connected as " + client.user.tag);
+  console.log("Server : ");
+  mainChannel = client.channels.get("636292442781515792");
+
+  client.guilds.forEach((guild) => {
+    console.log(`-- ${guild.name} - ${guild.id}`);
+    console.log("Channels : ");
+    guild.channels.forEach((channel) => {
+      console.log(`-- ${channel.name} (${channel.type} - ${channel.id})`);
+    });
+  });
 });
 
 client.on('message', (msg) => {
@@ -50,36 +60,43 @@ function helpCommand(arguments, msg) {
   }
 }
 
-function op(arguments, msg) {
+function op(arguments) {
   let uname = "";
-  for(let i = 1; i < arguments.length; i++){
-    if(i === 1 ){
-        uname += arguments[i];
-    }else{
-    uname += "+"+arguments[i];
+  for (let i = 1; i < arguments.length; i++) {
+    if (i === 1) {
+      uname += arguments[i];
+    } else {
+      uname += "+" + arguments[i];
     }
   }
 
   if (arguments.length < 0) {
-    msg.channel.send("För lite argument(exmpel: !op )");
+    mainChannel.send("För lite argument(exmpel: !op )");
   } else {
 
     switch (arguments[0]) {
       case "euw":
+<<<<<<< HEAD
         msg.channel.send("https://euw.op.gg/summoner/userName=" + uname);
+=======
+        mainChannel.send("https://euw.op.gg/summoner/userName=" + uname);
+>>>>>>> 8c82db5664030a880fb97b7585a0fa831a642fea
         break;
       case "na":
-        msg.channel.send("https://na.op.gg/summoner/userName=" + uname);
+        mainChannel.send("https://na.op.gg/summoner/userName=" + uname);
         break;
       case "eune":
-        msg.channel.send("https://eune.op.gg/summoner/userName=" + uname);
+        mainChannel.send("https://eune.op.gg/summoner/userName=" + uname);
         break;
       default:
-        msg.channel.send("You stupid or what support för wildcard regions endast");
+        mainChannel.send("You stupid or what support för wildcard regions endast");
     }
   }
 }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 8c82db5664030a880fb97b7585a0fa831a642fea
 client.login(bot_token);
