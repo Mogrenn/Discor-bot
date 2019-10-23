@@ -76,11 +76,7 @@ function op(arguments) {
 
     switch (arguments[0]) {
       case "euw":
-<<<<<<< HEAD
-        msg.channel.send("https://euw.op.gg/summoner/userName=" + uname);
-=======
         mainChannel.send("https://euw.op.gg/summoner/userName=" + uname);
->>>>>>> 8c82db5664030a880fb97b7585a0fa831a642fea
         break;
       case "na":
         mainChannel.send("https://na.op.gg/summoner/userName=" + uname);
@@ -94,9 +90,4 @@ function op(arguments) {
   }
 }
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 8c82db5664030a880fb97b7585a0fa831a642fea
 client.login(bot_token);
