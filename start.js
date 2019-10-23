@@ -1,6 +1,6 @@
 const Discord = require("./node_modules/discord.js");
 const client = new Discord.Client();
-let bot_token = "NjM2MTQ4ODIzMzg2ODgyMDQ5.Xa9Kpg.M6ui0H7EzEVgQ29MKaBo-5iJFTg";
+let bot_token = "NjM2MTQ4ODIzMzg2ODgyMDQ5.XbB2yg.PPeiWS4MI_V24EMCMR-rI71Bl-E";
 let mainChannel;
 
 client.on("ready", () => {
