@@ -37,7 +37,7 @@ client.on('message', (msg) => {
       console.log(error);
   });
 
-  if (msg.content.startsWith("!")) {
+  if (msg.content.startsWith("/")) {
     processCommand(msg);
   }
 });
@@ -105,7 +105,7 @@ function op(arguments) {
 function getToken(){
   con.connect(function(err) {
   if (err) throw err;
-  con.query("SELECT token FROM api where ID=1", function (err, response) {
+  con.query("SELECT token FROM api where service='Discord-bot'", function (err, response) {
   if (err) throw err;
   bot_token = response[0].token;
   client.login(bot_token);
