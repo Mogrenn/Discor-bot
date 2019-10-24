@@ -1,7 +1,7 @@
 const Discord = require("./node_modules/discord.js");
 const client = new Discord.Client();
 let mainChannel;
-let bot_token = "NjM2MTQ4ODIzMzg2ODgyMDQ5.XbCoSg.O4uSejD3Q_sJnB6-fWwoAU8rfaw";
+let bot_token = "NjM2MTQ4ODIzMzg2ODgyMDQ5.XbCpJA.1F22umb0v-R-WyPcZmsVVc-x6nA";
 client.on("ready", () => {
   console.log("Connected as " + client.user.tag);
   console.log("Server : ");
