@@ -1,7 +1,19 @@
 const Discord = require("./node_modules/discord.js");
+const mysql = require("mysql");
+let con = mysql.createConnection({
+  host: "localhost",
+  user: "user",
+  password: "",
+  database: "rodret"
+});
+let sql = "select token from api where ID=1";
 const client = new Discord.Client();
 let mainChannel;
-let bot_token = "NjM2MTQ4ODIzMzg2ODgyMDQ5.XbCqMA._hBGSQsCR6RMsimnj9qXiK68cvU";
+let bot_token;
+getToken();
+
+
+
 client.on("ready", () => {
   console.log("Connected as " + client.user.tag);
   console.log("Server : ");
@@ -28,7 +40,7 @@ client.on('message', (msg) => {
   if (msg.content.startsWith("!")) {
     processCommand(msg);
   }
-})
+});
 
 function processCommand(msg) {
   let fullCommand = msg.content.substr(1); // Remove the leading exclamation mark
@@ -89,4 +101,14 @@ function op(arguments) {
     }
   }
 }
-client.login(bot_token);
+
+function getToken(){
+  con.connect(function(err) {
+  if (err) throw err;
+  con.query("SELECT token FROM api where ID=1", function (err, response) {
+  if (err) throw err;
+  bot_token = response[0].token;
+  client.login(bot_token);
+  });
+  });
+}
