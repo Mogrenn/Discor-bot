@@ -6,7 +6,6 @@ let con = mysql.createConnection({
   password: "",
   database: "rodret"
 });
-let sql = "select token from api where ID=1";
 const client = new Discord.Client();
 let mainChannel;
 let bot_token;
@@ -37,7 +36,7 @@ client.on('message', (msg) => {
       console.log(error);
   });
 
-  if (msg.content.startsWith("!")) {
+  if (msg.content.startsWith("/")) {
     processCommand(msg);
   }
 });
@@ -58,6 +57,10 @@ function processCommand(msg) {
 
     case "op":
       op(arguments, msg);
+      break;
+
+    case "better":
+      better(msg);
       break;
     default:
 
@@ -82,8 +85,8 @@ function op(arguments) {
     }
   }
 
-  if (arguments.length < 0) {
-    mainChannel.send("För lite argument(exmpel: !op )");
+  if (arguments.length < 2) {
+    mainChannel.send("För lite argument(exmpel: !op euw snobble366)");
   } else {
 
     switch (arguments[0]) {
@@ -105,10 +108,23 @@ function op(arguments) {
 function getToken(){
   con.connect(function(err) {
   if (err) throw err;
-  con.query("SELECT token FROM api where ID=1", function (err, response) {
+  con.query("SELECT token FROM api where service='Discord_Bot'", function (err, response) {
   if (err) throw err;
+  console.log(response);
   bot_token = response[0].token;
   client.login(bot_token);
   });
   });
+}
+
+function better(msg){
+
+  msg.channel.send("https://www.youtube.com/watch?v=Sr7ZUlsTwKc");
+
+}
+
+function jungel(msg){
+
+ msg.channel.send("")
+
 }
