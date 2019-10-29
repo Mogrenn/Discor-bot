@@ -108,7 +108,7 @@ function op(arguments) {
 function getToken(){
   con.connect(function(err) {
   if (err) throw err;
-  con.query("SELECT token FROM api where service='Discord_Bot'", function (err, response) {
+  con.query("SELECT token FROM api where service='Discord-bot'", function (err, response) {
   if (err) throw err;
   console.log(response);
   bot_token = response[0].token;
